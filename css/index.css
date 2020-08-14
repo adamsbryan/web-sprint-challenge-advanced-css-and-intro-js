@@ -18,7 +18,6 @@ border: 0;
 font-size: 100%;  
 font: inherit;  
 vertical-align: baseline;  
-border:1px solid grey;
 }
 /*GENERAL STYLES*/
 html{
@@ -141,4 +140,19 @@ button:hover{
     display: flex;
     justify-content: space-around;
     margin:0 auto;
+}
+
+
+@media(max-width: 500px){
+    .row{
+        display: inline-block;
+    }
+    .artist{
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .title-container div{
+        width: 100%;
+    }
 }
