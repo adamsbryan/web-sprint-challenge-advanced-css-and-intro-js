@@ -208,11 +208,14 @@ const artists = [
 (1) Name of the first artist (0th index) in the array
 (2) Bio of the third artist (2nd index) in the array */
 
+console.log(artists[0].name);
+console.log(artists[2].bio);
 
 
 /* Task 2: There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Use an array method to fix this issue and console.log() to check your work. */
 
-
+artists[8].name = "Vincent Van Gogh";
+console.log(artists[8].name);
 
 /* Task 3: Create a function called `getArtistByIndex` that takes two arguments:
  *     (1) artists array
@@ -223,19 +226,32 @@ const artists = [
  * it will return `The artist at index 0 is Amedeo Modigliani`.
 */
 function getArtistByIndex(array, index) {
-    /* code here */
+    console.log(`The artist at index ${index} is ${array[index].name}.`)
   }
   
+getArtistByIndex(artists, 0);
+
   /**
 
 
 /* Task 4: Create a function called get20s() that takes data as an argument and returns an array with names of artists who were born in and died in 20th century (1900-2000) example born in 1901 and died in 1959 - included / born in 1889 and died in 1925 not included - should return ["Salvador Dali", "Frida Kahlo"]*/
 
-function get20s(/* Code here */){
-
-  /* Code here */
-
+function get20s(arr){
+  const newArr = [];
+  for(let i = 0; i<arr.length; i++)
+  {
+    if(arr[i].years.includes("18"))
+    {
+      
+    } else if(arr[i].years.includes("19"))
+    {
+      newArr.push(arr[i].name);
+    }
+  }
+  return newArr;
 }
+
+console.log(get20s(artists));
 
 
 /* Task 5: Create a function called `removeArtist` that takes two arguments:
@@ -248,10 +264,12 @@ function get20s(/* Code here */){
  * 
  * Note that sucessfully invoking this function multiple times without refreshing your browser will continuously remove artists from the array until there are none left. If you refresh your browser, the data will reset.  
 */
-function removeArtist(/*code here*/) {
-    /* code here */
+function removeArtist(arr, index) {
+    arr.splice(index, 1);
+    console.log(arr.length);
   }
   
+removeArtist(artists, 0);
  
 
 /**
@@ -267,11 +285,13 @@ bio: Add 1-2 sentences (or use lorem ipsum)
 
 At the end, this function should return the new array with information added"*/
 
-function addArtist(/* Code here */){
-
-    /* Code here */
-
+function addArtist(arr, id, name, years, genre, nationality, bio){
+    arr.push({id, name, years, genre, nationality, bio});
+    return arr;
   }
+
+addArtist(artists, 20, "Bryan Adams", "1996 - current day", "Web Design", "Japanese-American", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+getArtistByIndex(artists, 19);
 
 /* Task 7: Create a function called lotsOfArt() that takes one argument: 
 
@@ -281,12 +301,20 @@ and returns an array with names of artists who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ..."Albrecht Dürer"]*/
 
-function lotsOfArt(/* Code here */){
-
-  /* Code here */
-
+function lotsOfArt(arr){
+  const newArr = [];
+  for(let i = 0; i<arr.length; i++)
+  {
+    if(arr[i].paintings > 100)
+    {
+      newArr.push(arr[i].name);
+    }
+  }
+  return newArr;
 }
 
+console.log(lotsOfArt(artists));
+//this does not include "Amedo Modigliani" because of my removeArtists() function above.
 
 
 // 🎨🎨 STRETCH 🎨🎨//
@@ -321,11 +349,15 @@ function getHTML(/* Code here */){
 
 /* STRETCH 2: Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
-
-    /* Code here */
-
+function randomize(arr){
+    for(let i = arr.length-1; i > 0; i--)
+    {
+      let j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
   }
-
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(randomize(arr));
 
  /* STRETCH 3: Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
